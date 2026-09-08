@@ -16,3 +16,10 @@ svg {
 body {
     background-color: #202020;
 }
+
+h1 {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
+}
