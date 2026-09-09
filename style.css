@@ -23,3 +23,14 @@ h1 {
     text-align: center;
     font-size: 1.8rem;
 }
+
+.svar-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.svar {
+    padding: 2px 8px;
+}
