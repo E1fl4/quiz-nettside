@@ -24,17 +24,17 @@ h1 {
     font-size: 1.8rem;
 }
 
-.svar-container {
+.btn-container {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.svar {
+.btn {
     padding: 2px 8px;
 }
 
-.resultat {
+.resultat-container {
     display: none;
 }

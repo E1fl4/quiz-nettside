@@ -47,7 +47,7 @@ function avsluttQuiz() {
     console.log("quiz ferdig.\npoeng: " + poeng);
     document.querySelector(".poeng").textContent = poeng;
     document.querySelector(".spørsmål-container").style.display = "none";
-    document.querySelector(".resultat").style.display = "block";
+    document.querySelector(".resultat-container").style.display = "block";
 }
 
 function svarCallback(svar) {
@@ -60,3 +60,10 @@ document.querySelector(".svar0").addEventListener("click", () => svarCallback(0)
 document.querySelector(".svar1").addEventListener("click", () => svarCallback(1));
 document.querySelector(".svar2").addEventListener("click", () => svarCallback(2));
 document.querySelector(".svar3").addEventListener("click", () => svarCallback(3));
+document.querySelector(".restart-btn").addEventListener("click", () => {
+    n = 0;
+    poeng = 0;
+    setTekst();
+    document.querySelector(".spørsmål-container").style.display = "block";
+    document.querySelector(".resultat-container").style.display = "none";
+});
