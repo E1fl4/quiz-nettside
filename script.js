@@ -18,6 +18,16 @@ let spørsmål = [
             "bruh",
             "nei"
         ]
+    },
+    {
+        tekst: "Hva står RAM for?",
+        riktig: 0,
+        svar: [
+            "Random Access Memory",
+            "Random Access Osloskolen-GPT",
+            "Rapid Access Memory",
+            "Really Angry Memory"
+        ]
     }
 ];
 
@@ -33,10 +43,17 @@ function setTekst() {
 }
 setTekst();
 
+function avsluttQuiz() {
+    console.log("quiz ferdig.\npoeng: " + poeng);
+    document.querySelector(".poeng").textContent = poeng;
+    document.querySelector(".spørsmål-container").style.display = "none";
+    document.querySelector(".resultat").style.display = "block";
+}
+
 function svarCallback(svar) {
     if (svar == spørsmål[n].riktig) poeng++;
     if (spørsmål[++n]) setTekst();
-    else console.log("ferdig");
+    else avsluttQuiz();
 }
 
 document.querySelector(".svar0").addEventListener("click", () => svarCallback(0));

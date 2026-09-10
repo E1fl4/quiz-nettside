@@ -34,3 +34,7 @@ h1 {
 .svar {
     padding: 2px 8px;
 }
+
+.resultat {
+    display: none;
+}
