@@ -2,6 +2,7 @@ let spørsmål = [
     {
         tekst: "Hva er det riktige svaret på dette spørsmålet?",
         riktig: "spør Osloskolen-GPT",
+        svarType: "valg",
         svar: [
             "???",
             "bruh",
@@ -12,6 +13,7 @@ let spørsmål = [
     {
         tekst: "Hvor ofte burde du bruke Osloskolen-GPT?",
         riktig: "Hver dag 👍",
+        svarType: "valg",
         svar: [
             "???",
             "Hver dag 👍",
@@ -20,8 +22,14 @@ let spørsmål = [
         ]
     },
     {
+        tekst: "Hvor mange spørsmål er det i denne quizen?",
+        riktig: "5",
+        svarType: "tekst"
+    },
+    {
         tekst: "Hva står RAM for?",
         riktig: "Random Access Memory",
+        svarType: "valg",
         svar: [
             "Random Access Memory",
             "Random Access Osloskolen-GPT",
@@ -32,12 +40,7 @@ let spørsmål = [
     {
         tekst: "Hva står CPU for?",
         riktig: "Central Processing Unit",
-        svar: [
-            "Clash of Clans",
-            "Cookie Processing Unit",
-            "Combat Power Unit",
-            "Central Processing Unit"
-        ]
+        svarType: "tekst"
     }
 ];
 
@@ -46,10 +49,17 @@ let poeng = 0;
 
 function setTekst() {
     document.querySelector(".spørsmål-tekst").textContent = spørsmål[n].tekst;
-    document.querySelector(".svar0").textContent = spørsmål[n].svar[0];
-    document.querySelector(".svar1").textContent = spørsmål[n].svar[1];
-    document.querySelector(".svar2").textContent = spørsmål[n].svar[2];
-    document.querySelector(".svar3").textContent = spørsmål[n].svar[3];
+    if (spørsmål[n].svarType == "valg") {
+        document.querySelector(".svar0").textContent = spørsmål[n].svar[0];
+        document.querySelector(".svar1").textContent = spørsmål[n].svar[1];
+        document.querySelector(".svar2").textContent = spørsmål[n].svar[2];
+        document.querySelector(".svar3").textContent = spørsmål[n].svar[3];
+        document.querySelector(".valg-container").style.display = "flex";
+        document.querySelector(".svar-tekst-container").style.display = "none";
+    } else if (spørsmål[n].svarType == "tekst") {
+        document.querySelector(".valg-container").style.display = "none";
+        document.querySelector(".svar-tekst-container").style.display = "flex";
+    }
 }
 setTekst();
 
@@ -61,7 +71,7 @@ function avsluttQuiz() {
 }
 
 function svarCallback(svar) {
-    if (svar == spørsmål[n].riktig) poeng++;
+    if (svar.toLowerCase() == spørsmål[n].riktig.toLowerCase()) poeng++;
     if (spørsmål[++n]) setTekst();
     else avsluttQuiz();
 }
@@ -76,4 +86,10 @@ document.querySelector(".restart-btn").addEventListener("click", () => {
     setTekst();
     document.querySelector(".spørsmål-container").style.display = "block";
     document.querySelector(".resultat-container").style.display = "none";
+});
+document.querySelector(".svar-tekst-container").addEventListener("keyup", e => {
+    if (e.code == "Enter") {
+        svarCallback(document.querySelector(".svar-tekst").value);
+        document.querySelector(".svar-tekst").value = "";
+    }
 });
